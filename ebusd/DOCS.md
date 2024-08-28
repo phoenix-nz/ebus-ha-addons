@@ -1,6 +1,8 @@
 # Home Assistant Add-on: eBUSd
 
-This is to run [ebusd](http://ebusd.eu) as supervisor addon (docker container) in Home Assistant OS.
+This is to run [ebusd](http://ebusd.eu) as secondary supervisor addon (docker container) in Home Assistant OS.
+
+It is only necessary if you have two EBUS hardware interfaces.
 
 ## How to run ebusd
 
