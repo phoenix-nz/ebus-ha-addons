@@ -51,7 +51,7 @@ done
 
 #Device and mode selection
 MODE=""
-if bashio::config.has_value "mode"; then
+if bashio::config.has_value "mode" && [ -n $(bashio::config 'mode') ] && [ $(bashio::config 'mode') != "empty" ]; then
     MODE=$(bashio::config 'mode')
 fi
 if bashio::config.has_value "device" && bashio::config.has_value "network_device" && [ -z "$MODE" ]; then
