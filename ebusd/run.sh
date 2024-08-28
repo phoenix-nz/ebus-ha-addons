@@ -52,7 +52,7 @@ done
 #Device and mode selection
 MODE=""
 if bashio::config.has_value "mode" && [ -n $(bashio::config mode) ] && [ $(bashio::config mode) != "empty" ]; then
-    MODE=$(bashio::config 'mode')
+    MODE=$(bashio::config mode)
 fi
 bashio:log.notice "Connection mode set to $(bashio::config mode) - using $MODE"
 if [ -z "$MODE" ]; then 
