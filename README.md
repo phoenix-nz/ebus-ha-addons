@@ -3,10 +3,14 @@ Addons for http://home-assistant.io
 
 Created by @LukasGrebe.  Improved and maintained by @tim-devel
 
+Forked by @phoenix-nz to provide a secondary ebusd
+
+This repository is only necessary if you want to have more than one ebusd running at the same time on HASS-OS
+
 ## How to Install
 1. In Supervisor go to the Add-on Store,
 2. In the overflow menu click "Repositories"
-3. Add `https://github.com/LukasGrebe/ha-addons/`
+3. Add `https://github.com/phoenix-nz/ebus-ha-addons/`
 4. Wait for the ebusd Add-on to show up or click reload in the same overflow menu
 5. Install eBUSd.
 6. Follow Documentation, Setup and Install of the Add-on
