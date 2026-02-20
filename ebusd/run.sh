@@ -50,7 +50,17 @@ do
 done
 
 #Device and mode selection
-if bashio::config.has_value "device" && bashio::config.has_value "network_device" && bashio::config.has_value "mode"; then
+MODE=""
+if bashio::config.has_value "mode" && [ -n $(bashio::config mode) ] && [ $(bashio::config mode) != "empty" ]; then
+    MODE=$(bashio::config mode)
+fi
+bashio::log.notice "Connection mode set to $(bashio::config mode) - using $MODE"
+if [ -n "$MODE" ]; then 
+    bashio::log.warning "Using non empty mode"
+else
+    bashio::log.warning "Using empty connection mode"
+fi
+if bashio::config.has_value "device" && bashio::config.has_value "network_device" && [ -n "$MODE" ]; then
     bashio::log.warning "USB and network device defined.  Only one device can be used at a time."
     bashio::log.warning "Ignoring USB device..."
     ebusd_args+=("--device=$(bashio::config mode):$(bashio::config network_device)")
@@ -58,11 +68,11 @@ elif bashio::config.has_value "device" && bashio::config.has_value "network_devi
     bashio::log.warning "USB and network device defined.  Only one device can be used at a time."
     bashio::log.warning "Ignoring USB device..."
     ebusd_args+=("--device=$(bashio::config network_device)") 
-elif bashio::config.has_value "device" && bashio::config.has_value "mode"; then
+elif bashio::config.has_value "device" && [ -n "$MODE" ]; then
     ebusd_args+=("--device=$(bashio::config mode):$(bashio::config device)")
 elif bashio::config.has_value "device"; then
     ebusd_args+=("--device=$(bashio::config device)")
-elif bashio::config.has_value "network_device" && bashio::config.has_value "mode"; then
+elif bashio::config.has_value "network_device" && [ -n "$MODE" ]; then
     ebusd_args+=("--device=$(bashio::config mode):$(bashio::config network_device)")
 elif bashio::config.has_value "network_device"; then
     ebusd_args+=("--device=$(bashio::config network_device)")
